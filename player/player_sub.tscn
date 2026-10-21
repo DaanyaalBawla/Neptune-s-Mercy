@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cpudren4jdsvi"]
+
+[ext_resource type="Script" uid="uid://dorbg0pawbw1j" path="res://player/player_sub.gd" id="1_lwqtj"]
+[ext_resource type="Script" uid="uid://btqfgnx0p0rxo" path="res://player/fp_cam.gd" id="2_xyp85"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k2qec"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g100s"]
+
+[node name="player_sub" type="CharacterBody3D" unique_id=1789419055]
+floor_stop_on_slope = false
+floor_max_angle = 1.134464
+script = ExtResource("1_lwqtj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1317966084]
+shape = SubResource("CapsuleShape3D_k2qec")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=861408760]
+mesh = SubResource("CapsuleMesh_g100s")
+
+[node name="head" type="Node3D" parent="." unique_id=1247726088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52033967, 0)
+script = ExtResource("2_xyp85")
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=935051475]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+fov = 15.0
+far = 70.0

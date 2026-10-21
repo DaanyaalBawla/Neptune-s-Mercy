@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dyvyrk4bk0n3k"]
+
+[ext_resource type="Texture2D" uid="uid://bmkpd6pc0cg21" path="res://icon.svg" id="1_wv0av"]
+[ext_resource type="PackedScene" uid="uid://cpudren4jdsvi" path="res://player/player_sub.tscn" id="2_ifwhi"]
+[ext_resource type="PackedScene" uid="uid://bfs1tceyfei8g" path="res://glb_models/terrain_3d.tscn" id="3_8t3nf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ifwhi"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_8t3nf"]
+sky_material = SubResource("ProceduralSkyMaterial_ifwhi")
+
+[sub_resource type="Environment" id="Environment_jd6er"]
+background_mode = 2
+sky = SubResource("Sky_8t3nf")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifwhi"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8t3nf"]
+albedo_texture = ExtResource("1_wv0av")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jd6er"]
+size = Vector3(10, 1, 10)
+
+[node name="sea_level" type="Node3D" unique_id=587010488]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=114684818]
+environment = SubResource("Environment_jd6er")
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=1548831783]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=716245645]
+shape = SubResource("BoxShape3D_ifwhi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=1046234651]
+material_override = SubResource("StandardMaterial3D_8t3nf")
+mesh = SubResource("BoxMesh_jd6er")
+
+[node name="player_sub" parent="." unique_id=1789419055 instance=ExtResource("2_ifwhi")]
+transform = Transform3D(-1.5, 0, -2.2649371e-07, 0, 1.5, 0, 2.2649371e-07, 0, -1.5, 0, 9.656248, 12.13795)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1745660553]
+transform = Transform3D(1, 0, 0, 0, -0.4817536, 0.8763067, 0, -0.8763067, -0.4817536, -0.40704203, 7.1365066, -1.3529763)
+shadow_enabled = true
+
+[node name="Terrain3D" parent="." unique_id=937631620 instance=ExtResource("3_8t3nf")]
